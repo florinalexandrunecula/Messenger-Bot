@@ -50,5 +50,5 @@ class Bot(Client):
                     self.send(Message(text = 'Sunt ' + str(temp) + ' grade la ' + oras), thread_id = thread_id_Alex, thread_type = thread_type)
                     self.send(Message(text = 'Sunt ' + str(temp) + ' grade la ' + oras), thread_id = thread_id_Bianca, thread_type = thread_type)
 
-client = Bot("mralgadoro@yahoo.com", "Blackreaper1999")
+client = Bot("email", "password")
 client.listen()
