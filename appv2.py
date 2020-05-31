@@ -43,5 +43,5 @@ class Bot(Client):
             for address in addresses:
               self.send(Message(text = 'Sunt ' + str(temp) + ' grade la ' + oras), thread_id = address, thread_type = thread_type)
 
-client = Bot("mralgadoro@yahoo.com", "Blackreaper1999")
+client = Bot("email", "password")
 client.listen()
