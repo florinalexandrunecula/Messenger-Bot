@@ -2,6 +2,9 @@ from fbchat import log, Client
 from fbchat.models import *
 import requests
 import json
+import calendar
+from flask import Flask
+from flask import request
 
 # To do: Time, Reminder (to do), 
 
@@ -15,6 +18,23 @@ import json
 # Calendar
 # E1 (15 iulie 2020): Examen BD
 # E2 (): Examen
+
+app = Flask(__name__)
+
+@app.route('/MDS')
+def calendar(): 
+    name = request.args.get('name', None)
+    '''
+    text_cal = calendar.HTMLCalendar(firstweekday = 0)
+    year = 2020
+    month = 7
+    dict = {'Examen Tap' : '26 iulie'}
+    return text_cal.formatmonth(year, month) + "Evenimente: " + str(dict)
+    '''
+    return name
+
+addresses = {}
+got_login = 0 # Only one login at the time (daca mai multi se logheaza in acelasi timp crapa)
 
 addresses = {}
 got_login = 0 # Only one login at the time (daca mai multi se logheaza in acelasi timp crapa)
@@ -39,8 +59,11 @@ class Bot(Client):
                         self.send(Message(text = name + ' a intrat pe server! Hai sa-l salutam'), thread_id = address, thread_type = thread_type)
             else:
                 cere_vremea = 0
+                cere_calendar = 0
                 if 'botule' in message_object.text.lower() and 'vremea' in message_object.text.lower():
                     cere_vremea = 1
+                if 'botule' in message_object.text.lower() and 'calendar' in message_object.text.lower():
+                    cere_calendar = 1
                 for address in addresses:
                     if address != author_id:
                         self.send(Message(text = addresses[author_id] + ' - ' + message_object.text), thread_id = address, thread_type = thread_type)
@@ -52,7 +75,11 @@ class Bot(Client):
                     temp = temp - 273.15
                     for address in addresses:
                         self.send(Message(text = 'Sunt ' + str(temp) + ' grade la ' + oras), thread_id = address, thread_type = thread_type)
-
+                if cere_calendar = 1:
+                    app.run(host = '0.0.0.0', port = 443)
+                    url = 'http://107.23.107.21:443/MDS?name=' + addresses[author_id]
+                    self.send(Message(text = url), thread_id = author_id, thread_type = thread_type)
+                    
 email = input("email: ")
 password = input("password: ")
 client = Bot(email, password)
