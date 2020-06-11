@@ -55,6 +55,13 @@ class User():
             calendar[date] = [event_name]
 
 
+def get_addresses():
+    addresses = []
+    for user in users:
+    addresses.append(user.id)
+
+    return addresses
+
     
 class Bot(Client):
 
@@ -76,6 +83,8 @@ class Bot(Client):
               user.add_event(event_name, date)
             
     def login(self):
+        global got_login
+
         
         if got_login == 0:
             self.send(Message(text = "Salut! Nu stiu inca cum te cheama. Care este numele tau?"), thread_id = author_id, thread_type = thread_type)
@@ -92,14 +101,13 @@ class Bot(Client):
 
 
     def onMessage(self, author_id, message_object, thread_id, thread_type, **kwargs):
-        global got_login
         global addresses
         self.markAsDelivered(thread_id, message_object.uid)
         self.markAsRead(thread_id)
         
     
         if author_id != self.uid:
-            if author_id not in addresses:
+            if author_id not in get_addresses():
                 self.login()
                    
             else:
