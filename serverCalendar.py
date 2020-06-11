@@ -16,7 +16,19 @@ def calendar_user():
     text_cal = calendar.HTMLCalendar(firstweekday = 0)
     year = currentYear
     month = currentMonth
-    return text_cal.formatmonth(year, month) + "Evenimente: <br/>" + str(dicti)
+    
+    items = dicti.items()
+
+    param = ""
+    for item in items:
+        param += f" La data de {item[0]} aveti urmatoarele examene: "
+
+        for exam in item[1]:
+            param += f"{exam}, "
+        param += "<\br>"
+
+    
+    return text_cal.formatmonth(year, month) + "Evenimente: <br/>" + param
 
 if __name__ == '__main__':
     app.run(host = '0.0.0.0', port = 443)
