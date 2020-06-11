@@ -72,7 +72,7 @@ class Bot(Client):
         for address in addresses:
             self.send(Message(text = 'Sunt ' + str(temp) + ' grade la ' + oras), thread_id = address, thread_type = thread_type)
                 
-     def add_even(event_name, date, user):
+    def add_even(event_name, date, user):
               user.add_event(event_name, date)
             
     def login(self):
