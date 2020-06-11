@@ -19,16 +19,19 @@ def calendar_user():
     
     items = dicti.items()
 
-    param = ""
-    for item in items:
-        param += f" La data de {item[0]} aveti urmatoarele examene: "
+    if len(items) > 0:
+        param = "Evenimente: <br/>"
+        for item in items:
+            param += f" La data de {item[0]} aveti urmatoarele examene: "
 
-        for exam in item[1]:
-            param += f"{exam}, "
-        param += "<br/>"
+            for exam in item[1]:
+                param += f"{exam}, "
+            param += "<br/>"
+    else:
+        param = "Nu aveti evenimente in aceasta luna<br/>"
 
     
-    return text_cal.formatmonth(year, month) + "Evenimente: <br/>" + param
+    return text_cal.formatmonth(year, month) + param
 
 if __name__ == '__main__':
     app.run(host = '0.0.0.0', port = 443)
