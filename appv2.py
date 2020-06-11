@@ -48,7 +48,12 @@ class user():
         self.name = name
         self.calendar_link = calendar_link
 
-    def add_event():
+    def add_event(self, event_name, date):
+        if date in self.calendar:
+            calendar[date].append(event_name)
+        else:
+            calendar[date] = [event_name]
+
 
     
 class Bot(Client):
