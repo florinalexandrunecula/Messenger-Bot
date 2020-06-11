@@ -42,7 +42,7 @@ addresses = {}
 got_login = 0 # Only one login at the time (daca mai multi se logheaza in acelasi timp crapa)
 
 
-class user():
+class User():
     def __init__(self, id = "", name = "", calendar_link = ""):
         self.id = id
         self.name = name
