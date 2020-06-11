@@ -36,27 +36,55 @@ def calendar():
 addresses = {}
 got_login = 0 # Only one login at the time (daca mai multi se logheaza in acelasi timp crapa)
 
+
+users = []
 addresses = {}
 got_login = 0 # Only one login at the time (daca mai multi se logheaza in acelasi timp crapa)
 
+
+class user():
+    def __init__(self, id = "", name = "", calendar_link = ""):
+        self.id = id
+        self.name = name
+        self.calendar_link = calendar_link
+
+    def add_event():
+
+    
 class Bot(Client):
+
+
+    def send_all(self, message):
+        for user in users:
+            self.send(Message(text = message), thread_id = user.id, thread_type = ThreadType.USER)
+
+    def login(self):
+        
+        if got_login == 0:
+            self.send(Message(text = "Salut! Nu stiu inca cum te cheama. Care este numele tau?"), thread_id = author_id, thread_type = thread_type)
+            got_login = 1
+            
+        elif got_login == 1:
+            
+            got_login = 0
+            name = message_object.text
+            user = User(id = author_id,name = name)
+            users.append(user)
+            self.send_all(name + ' a intrat pe server! Hai sa-l salutam')
+
+
+
     def onMessage(self, author_id, message_object, thread_id, thread_type, **kwargs):
         global got_login
         global addresses
         self.markAsDelivered(thread_id, message_object.uid)
         self.markAsRead(thread_id)
         
+    
         if author_id != self.uid:
             if author_id not in addresses:
-                if got_login == 0:
-                    self.send(Message(text = "Salut! Nu stiu inca cum te cheama. Care este numele tau?"), thread_id = author_id, thread_type = thread_type)
-                    got_login = 1
-                elif got_login == 1:
-                    got_login = 0
-                    name = message_object.text
-                    addresses[author_id] = name
-                    for address in addresses:
-                        self.send(Message(text = name + ' a intrat pe server! Hai sa-l salutam'), thread_id = address, thread_type = thread_type)
+                self.login()
+                   
             else:
                 cere_vremea = 0
                 cere_calendar = 0
