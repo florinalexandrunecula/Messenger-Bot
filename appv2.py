@@ -82,7 +82,7 @@ class Bot(Client):
     def add_even(event_name, date, user):
               user.add_event(event_name, date)
             
-    def login(self):
+    def login(self,  author_id):
         global got_login
 
         
@@ -108,7 +108,7 @@ class Bot(Client):
     
         if author_id != self.uid:
             if author_id not in get_addresses():
-                self.login()
+                self.login( author_id)
                    
             else:
                 cere_vremea = 0
