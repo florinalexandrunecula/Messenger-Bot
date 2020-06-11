@@ -25,7 +25,7 @@ def calendar_user():
 
         for exam in item[1]:
             param += f"{exam}, "
-        param += "<\br>"
+        param += "<br/>"
 
     
     return text_cal.formatmonth(year, month) + "Evenimente: <br/>" + param
