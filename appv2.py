@@ -62,6 +62,16 @@ class Bot(Client):
     def send_all(self, message):
         for user in users:
             self.send(Message(text = message), thread_id = user.id, thread_type = ThreadType.USER)
+            
+    def cere_vremea(self):
+        oras = message_object.text.strip('?').split('la ')[1]
+        response = requests.get("http://api.openweathermap.org/data/2.5/weather?q=" + oras + "&appid=d00e3b645e7b14cceb37659193a27d72")
+        data = json.loads(response.text)
+        temp = data['main']['temp']
+        temp = temp - 273.15
+        for address in addresses:
+            self.send(Message(text = 'Sunt ' + str(temp) + ' grade la ' + oras), thread_id = address, thread_type = thread_type)
+                
 
     def login(self):
         
@@ -101,13 +111,7 @@ class Bot(Client):
                     if address != author_id:
                         self.send(Message(text = addresses[author_id] + ' - ' + message_object.text), thread_id = address, thread_type = thread_type)
                 if cere_vremea == 1:
-                    oras = message_object.text.strip('?').split('la ')[1]
-                    response = requests.get("http://api.openweathermap.org/data/2.5/weather?q=" + oras + "&appid=d00e3b645e7b14cceb37659193a27d72")
-                    data = json.loads(response.text)
-                    temp = data['main']['temp']
-                    temp = temp - 273.15
-                    for address in addresses:
-                        self.send(Message(text = 'Sunt ' + str(temp) + ' grade la ' + oras), thread_id = address, thread_type = thread_type)
+                    self.cere_vremea()
                 if cere_calendar = 1:
                     app.run(host = '0.0.0.0', port = 443)
                     url = 'http://107.23.107.21:443/MDS?name=' + addresses[author_id]
