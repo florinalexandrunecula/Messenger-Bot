@@ -14,7 +14,7 @@ All our Bot commands must contain the word 'Botule' and a certain keyword specif
 
 - Python 3
 - Pip
-- Following Python Modules: requests, fbchat
+- Following Python Modules: requests, fbchat, pyshorteners
 - OpenWeather API key
 - Facebook/Messenger account
 
