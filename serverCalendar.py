@@ -22,10 +22,10 @@ def calendar_user():
     if len(items) > 0:
         param = "Evenimente: <br/>"
         for item in items:
-            param += f" La data de {item[0]} aveti urmatoarele examene: "
+            param += f" La data de {item[0]} aveti urmatoarele evenimente: "
 
-            for exam in item[1]:
-                param += f"{exam}, "
+            for even in item[1]:
+                param += f"{even}, "
             param += "<br/>"
     else:
         param = "Nu aveti evenimente in aceasta luna<br/>"
