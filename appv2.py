@@ -84,6 +84,34 @@ class Bot(Client):
             if user.id != author_id:
                 self.send(Message(text=message), thread_id=user.id, thread_type=ThreadType.USER)
 
+                
+#     BILOBA_FLOWER = '#a695c7'
+#     BRILLIANT_ROSE = '#ff5ca1'
+#     CAMEO = '#d4a88c'
+#     DEEP_SKY_BLUE = '#20cef5'
+#     FERN = '#67b868'
+#     FREE_SPEECH_GREEN = '#13cf13'
+#     GOLDEN_POPPY = '#ffc300'
+#     LIGHT_CORAL = '#e68585'
+#     MEDIUM_SLATE_BLUE = '#7646ff'
+#     MESSENGER_BLUE = '#0084ff'
+#     PICTON_BLUE = '#6699cc'
+#     PUMPKIN = '#ff7e29'
+#     RADICAL_RED = '#fa3c4c'
+#     SHOCKING = '#d696bb'¶
+#     VIKING = '#44bec7'
+
+    
+    def change_color(self, color, author_id):
+        user = get_user(author_id)
+        message = user.name + ' a schimbat culoarea conversatiei'
+        self.changeThreadColor(ThreadColor.RADICAL_RED, thread_id=user.id)
+        self.send(Message(text=message), thread_id=target_user.id, thread_type=ThreadType.USER)
+
+
+
+
+    
     def cere_vremea(self, message_object):
         oras = message_object.text.strip('?').split('la ')[1]
         response = requests.get(
@@ -150,6 +178,8 @@ class Bot(Client):
                 cere_calendar = False
                 cere_logout = False
                 change_nickname = False
+                change_color = False
+
 
                 if 'botule' in message_object.text.lower() and 'vremea' in message_object.text.lower():
                     cere_vremea = True
@@ -184,6 +214,12 @@ class Bot(Client):
                     else:
                         self.send(Message(text="Userul ales nu exista"), thread_id=author_id,
                                   thread_type=ThreadType.USER)
+
+                 if 'botule' in message_object.text.lower() and 'new color' in message_object.text.lower():
+                    change_color = True
+#                     color = message_object.text.split("new color ")[1]
+                    self.change_color('c', author_id, thread_id)
+                    
 
                 if cere_vremea:
                     self.cere_vremea(message_object)
