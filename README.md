@@ -14,13 +14,13 @@ All our Bot commands must contain the word 'Botule' and a certain keyword specif
 
 - Python 3
 - Pip
-- Following Python Modules: requests, fbchat
+- Following Python Modules: requests, fbchat, pyshorteners
 - OpenWeather API key
 - Facebook/Messenger account
 
 ## Functionality
 
-The fbchat module acts as an browser and manages to connect to the Facebook page. #
+The fbchat module acts as an browser and manages to connect to the Facebook page.
 
 This is a demonstration of the capabilities of our bot:
 ![alt text](https://github.com/florinalexandrunecula/Messenger-Bot/blob/master/Photos/Demo.PNG)
