@@ -389,7 +389,7 @@ class Bot(Client):
                 if cere_vremea:
                     self.cere_vremea(message_object)
                 elif cere_calendar:
-                    self.cere_calendar(author_id, thread_type)
+                    self.cere_calendar(author_id)
                 elif cere_logout:
                     self.logoutUser(author_id)
 
