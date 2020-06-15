@@ -79,7 +79,7 @@ def get_user_by_name(name):
     for user in users:
         if user.name.lower() == name:
             return user
-        return -1
+    return -1
 
 
 class Bot(Client):
@@ -397,7 +397,7 @@ class Bot(Client):
 # email = input("email: ")
 # password = input("password: ")
 
-email = 'email'
-password = 'password'
+email = 'mralgadoro@yahoo.com'
+password = 'a1s2d3f4g5h6j7k8l9'
 client = Bot(email, password)
 client.listen()
