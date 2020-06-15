@@ -43,7 +43,9 @@ class User():
         else:
             # daca data aleasa nu exista o adaugam impreuna cu evenimentul
             self.calendar[date] = [event_name]
-
+            
+    def set_name(self, name):
+        self.name = name
 
 
 
@@ -95,7 +97,7 @@ class Bot(Client):
                    nickname -> noul nume
         '''
         
-        target_user.name = nickname
+        target_user.set_name(nickname)
     
         # stabilim, in functie de cine schimba numele, ce mesaj trebuie afisat in conversatie
         if author_id == target_user.id:
