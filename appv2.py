@@ -395,7 +395,7 @@ class Bot(Client):
 # email = input("email: ")
 # password = input("password: ")
 
-email = 'mralgadoro@yahoo.com'
-password = 'a1s2d3f4g5h6j7k8l9'
+email = 'email'
+password = 'password'
 client = Bot(email, password)
 client.listen()
